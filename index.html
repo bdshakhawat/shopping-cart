@@ -25,9 +25,9 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="phone-decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button onclick="phonePriceUpdate(false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
                            <input id="phone-input"  type="text" class="form-control text-center" value="1">
-                           <button id="phone-increase"  class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="phonePriceUpdate(true)"  class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
                         <h5 id="phone-price">$1219</h5>
                         <img src="images/remove.png" alt="" class="remove-item">
@@ -100,24 +100,26 @@
       //    // document.getElementById('case-price').innerText = "$" + totalCasePrice;
       //    productNumberUpdate(false);
               // })
-      const increaseBtn = document.getElementById('phone-increase');
-      increaseBtn.addEventListener('click', function(){
-         const currentPhone = document.getElementById('phone-input').value;
-         const phoneNumber = parseInt(currentPhone);
-         const totalPhone = phoneNumber + 1;
-         document.getElementById('phone-input').value = totalPhone;
-         const totalPhonePrice = totalPhone * 1219;
-         document.getElementById('phone-price').innerText = totalPhonePrice;
+      // const increasePhoneBtn = document.getElementById('phone-increase');
+      // increasePhoneBtn.addEventListener('click', function(){
+         // const currentPhone = document.getElementById('phone-input').value;
+         // const phoneNumber = parseInt(currentPhone);
+         // const totalPhone = phoneNumber + 1;
+         // document.getElementById('phone-input').value = totalPhone;
+         // const totalPhonePrice = totalPhone * 1219;
+         // document.getElementById('phone-price').innerText = '$' + totalPhonePrice;
+      //    phonePriceUpdate(true);
 
-      })
-      document.getElementById('phone-decrease').addEventListener('click', function(){
-         const currentPhone = document.getElementById('phone-input').value;
-         const phoneNumber = parseInt(currentPhone);
-         const totalPhone = phoneNumber - 1;
-         document.getElementById('phone-input').value = totalPhone;
-         const totalPhonePrice = totalPhone * 1219;
-         document.getElementById('phone-price').innerText = totalPhonePrice;
-      })
+      // })
+      // document.getElementById('phone-decrease').addEventListener('click', function(){
+      //    const currentPhone = document.getElementById('phone-input').value;
+      //    const phoneNumber = parseInt(currentPhone);
+      //    const totalPhone = phoneNumber - 1;
+      //    document.getElementById('phone-input').value = totalPhone;
+      //    const totalPhonePrice = totalPhone * 1219;
+      //    document.getElementById('phone-price').innerText = totalPhonePrice;
+      // phonePriceUpdate(false);
+      // })
 
       function productNumberUpdate(isIncrease){
          var currentCase = document.getElementById('case-input').value;
@@ -132,6 +134,21 @@
          document.getElementById('case-input').value = totalCase;
          var totalCasePrice = totalCase * 59; 
          document.getElementById('case-price').innerText = "$" + totalCasePrice;
+
+      }
+      function phonePriceUpdate(isIncrease){
+         const currentPhone = document.getElementById('phone-input').value;
+         const phoneNumber = parseInt(currentPhone);
+         if (isIncrease == true){
+            totalPhone = phoneNumber + 1;
+         }
+         if (isIncrease == false  && phoneNumber> 0){
+            totalPhone = phoneNumber -1;
+         }
+         document.getElementById('phone-input').value = totalPhone;
+         const totalPhonePrice = totalPhone * 1219;
+         document.getElementById('phone-price').innerText = '$' + totalPhonePrice;
+
 
       }
 
