@@ -25,9 +25,9 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button onclick="phonePriceUpdate(false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button onclick="productNumberUpdate('phone',false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
                            <input id="phone-input"  type="text" class="form-control text-center" value="1">
-                           <button onclick="phonePriceUpdate(true)"  class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="productNumberUpdate('phone',true)"  class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
                         <h5 id="phone-price">$1219</h5>
                         <img src="images/remove.png" alt="" class="remove-item">
@@ -43,9 +43,9 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button onclick="productNumberUpdate(false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button onclick="productNumberUpdate('case',false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
                            <input id="case-input"  type="text" class="form-control text-center" value="1">
-                           <button onclick=" productNumberUpdate(true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick=" productNumberUpdate('case', true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
                         <h5 id="case-price">$59</h5>
@@ -78,6 +78,28 @@
       </div>
    </section>
    <script>
+      function productNumberUpdate(product, isIncrease){
+         var currentProduct = document.getElementById(product + '-input').value;
+         var productNumber = parseInt(currentProduct);
+         var totalProduct = productNumber ;
+         if (isIncrease == true){
+            totalProduct = productNumber + 1;
+         }
+         if (isIncrease == false  && productNumber> 0){
+            totalProduct = productNumber -1;
+         }
+         document.getElementById(product + '-input').value = totalProduct;
+         // var totalProductPrice = totalProduct * 59; 
+         let totalProductPrice = 0;
+         if (product == 'phone'){
+            totalProductPrice = totalProduct*1219;
+         }
+         if (product == 'case'){
+            totalProductPrice = totalProduct * 59;
+         }
+         document.getElementById(product + '-price').innerText = "$" + totalProductPrice;
+
+      }
       // const increaseBtn = document.getElementById("case-increase");
       // increaseBtn.addEventListener('click', function(){
       // //    var currentCase = document.getElementById('case-input').value;
@@ -121,36 +143,36 @@
       // phonePriceUpdate(false);
       // })
 
-      function productNumberUpdate(isIncrease){
-         var currentCase = document.getElementById('case-input').value;
-         var caseNumber = parseInt(currentCase);
-         var totalCase = caseNumber ;
-         if (isIncrease == true){
-            totalCase = caseNumber + 1;
-         }
-         if (isIncrease == false  && caseNumber> 0){
-            totalCase = caseNumber -1;
-         }
-         document.getElementById('case-input').value = totalCase;
-         var totalCasePrice = totalCase * 59; 
-         document.getElementById('case-price').innerText = "$" + totalCasePrice;
+      // function productNumberUpdate(isIncrease){
+      //    var currentCase = document.getElementById('case-input').value;
+      //    var caseNumber = parseInt(currentCase);
+      //    var totalCase = caseNumber ;
+      //    if (isIncrease == true){
+      //       totalCase = caseNumber + 1;
+      //    }
+      //    if (isIncrease == false  && caseNumber> 0){
+      //       totalCase = caseNumber -1;
+      //    }
+      //    document.getElementById('case-input').value = totalCase;
+      //    var totalCasePrice = totalCase * 59; 
+      //    document.getElementById('case-price').innerText = "$" + totalCasePrice;
 
-      }
-      function phonePriceUpdate(isIncrease){
-         const currentPhone = document.getElementById('phone-input').value;
-         const phoneNumber = parseInt(currentPhone);
-         if (isIncrease == true){
-            totalPhone = phoneNumber + 1;
-         }
-         if (isIncrease == false  && phoneNumber> 0){
-            totalPhone = phoneNumber -1;
-         }
-         document.getElementById('phone-input').value = totalPhone;
-         const totalPhonePrice = totalPhone * 1219;
-         document.getElementById('phone-price').innerText = '$' + totalPhonePrice;
+      // }
+      // function phonePriceUpdate(isIncrease){
+      //    const currentPhone = document.getElementById('phone-input').value;
+      //    const phoneNumber = parseInt(currentPhone);
+      //    if (isIncrease == true){
+      //       totalPhone = phoneNumber + 1;
+      //    }
+      //    if (isIncrease == false  && phoneNumber> 0){
+      //       totalPhone = phoneNumber -1;
+      //    }
+      //    document.getElementById('phone-input').value = totalPhone;
+      //    const totalPhonePrice = totalPhone * 1219;
+      //    document.getElementById('phone-price').innerText = '$' + totalPhonePrice;
 
 
-      }
+      // }
 
       
       
