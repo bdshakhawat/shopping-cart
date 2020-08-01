@@ -58,13 +58,13 @@
                   <div class="row">
 
                      <div class="col-md-8">
-                        <h5>Subtotal: </h5>
+                        <h5 >Subtotal: </h5>
                         <h5>Tax:</h5>
                         <h5>Total:</h5>
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
+                        <h5 id="sub-total">$1,278</h5>
                         <h5>$0</h5>
                         <h5>$1,278</h5>
                      </div>
@@ -79,8 +79,8 @@
    </section>
    <script>
       function productNumberUpdate(product, isIncrease){
-         var currentProduct = document.getElementById(product + '-input').value;
-         var productNumber = parseInt(currentProduct);
+         // var currentProduct = document.getElementById(product + '-input').value;
+         var productNumber = getInputValue(product);
          var totalProduct = productNumber ;
          if (isIncrease == true){
             totalProduct = productNumber + 1;
@@ -98,7 +98,28 @@
             totalProductPrice = totalProduct * 59;
          }
          document.getElementById(product + '-price').innerText = "$" + totalProductPrice;
+         grandTotal()
 
+      }
+      function grandTotal(){
+         // var currentCase = document.getElementById('case-input');
+         // var caseNumber = parseInt(currentCase.value);
+         const caseNumber = getInputValue('case');
+
+         // const currentPhone = document.getElementById('phone-input');
+         // const phoneNumber = parseInt(currentPhone.value);
+         const phoneNumber = getInputValue('phone');
+
+         const totalPrice = caseNumber * 59 + phoneNumber * 1219;
+         document.getElementById('sub-total').innerText = '$' + totalPrice;
+
+
+
+      }
+      function getInputValue(product){
+         var currentProduct= document.getElementById(product + '-input');
+         var productNumber = parseInt(currentProduct.value);
+         return productNumber;
       }
       // const increaseBtn = document.getElementById("case-increase");
       // increaseBtn.addEventListener('click', function(){
